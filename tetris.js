@@ -4,8 +4,6 @@ let W = canvas.width;
 let H = canvas.height;
 
 context.scale(20, 20);
-context.fillStyle = "#000";
-context.fillRect(0, 0, W, H);
 
 const matrix = [
     [0, 0, 0],
@@ -14,6 +12,8 @@ const matrix = [
 ];
 
 function draw() {
+    context.fillStyle = "#000";
+    context.fillRect(0, 0, W, H);
     drawMatrix(player.matrix, player.position);
 }
 
@@ -39,3 +39,4 @@ const player = {
     matrix: matrix
 };
 
+update();
