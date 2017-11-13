@@ -1,7 +1,7 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-var W = canvas.width;
-var H = canvas.height;
+let W = canvas.width;
+let H = canvas.height;
 
 context.scale(20, 20);
 context.fillStyle = "#000";
