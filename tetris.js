@@ -28,9 +28,14 @@ function drawMatrix(matrix, offset) {
     });
 }
 
+function update() {
+    draw();
+    requestAnimationFrame(update);
+
+}
+
 const player = {
     position: {x:5, y:5},
     matrix: matrix
 };
 
-draw();
