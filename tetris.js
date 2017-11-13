@@ -28,10 +28,21 @@ function drawMatrix(matrix, offset) {
     });
 }
 
-function update() {
+let dropCounter = 0;
+dropInterval = 1000;
+let lastTime = 0;
+
+function update(time = 0) {
+    const deltaTime = time - lastTime;
+    lastTime = time;
+    dropCounter += deltaTime;
+    if (dropCounter > dropInterval) {
+        player.position.y++;
+        dropCounter = 0;
+    }
+    // console.log(deltaTime);
     draw();
     requestAnimationFrame(update);
-
 }
 
 const player = {
