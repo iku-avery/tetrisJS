@@ -11,6 +11,21 @@ const matrix = [
     [0, 1, 0]
 ];
 
+function playGame(game, player) {
+    const mtx = player.matrix;
+    const ofs = player.pos;
+    for (let y = 0; y < mtx.length; ++y) {
+        for (let x = 0; x < mtx[y].length; ++x) {
+            if (mtx[y][x] !== 0 &&
+                (game[y + ofs.y] &&
+                    game[y + ofs.y][x + ofs.x]) !== 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function createMatrix(w, h) {
     const matrix = [];
     while (h--) {
