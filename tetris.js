@@ -11,7 +11,7 @@ const matrix = [
     [0, 1, 0]
 ];
 
-function playGame(game, player) {
+function isCollision(game, player) {
     const mtx = player.matrix;
     const ofs = player.pos;
     for (let y = 0; y < mtx.length; ++y) {
@@ -62,7 +62,13 @@ function mergeGamePlayer(game, player) {
 }
 
 function playerDrop() {
+
     player.position.y++;
+    if (isCollision(game, player)) {
+        player.position.y--;
+        mergeGamePlayer(game, player);
+        player.position.y = 0;
+    }
     dropCounter = 0;
 
 }
