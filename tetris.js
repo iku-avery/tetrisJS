@@ -83,6 +83,11 @@ function playerMove(direction) {
     }
 }
 
+function playerRotate(direction) {
+    rotate(player.matrix, direction);
+
+}
+
 function rotate(matrix, direction) {
     for (let y = 0; y < matrix.length; ++y) {
         for (let x = 0; x < y; ++x) {
@@ -136,6 +141,10 @@ document.addEventListener('keydown', event => {
         // player.position.x++;
     } else if (event.keyCode === 40) {
         playerDrop();
+    } else if (event.keyCode === 81) {
+        playerRotate(-1);
+    } else if (event.keyCode === 87) {
+        playerRotate(1);
     }
 });
 
