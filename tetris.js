@@ -84,7 +84,12 @@ function playerMove(direction) {
 }
 
 function playerRotate(direction) {
+    let offset = 1;
     rotate(player.matrix, direction);
+    while (collide(game, matrix)) {
+        console.log("do this");
+
+    }
 
 }
 
