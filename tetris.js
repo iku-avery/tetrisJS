@@ -11,14 +11,14 @@ const matrix = [
     [0, 1, 0]
 ];
 
-function isCollision(game, player) {
-    const mtx = player.matrix;
-    const ofs = player.pos;
-    for (let y = 0; y < mtx.length; ++y) {
-        for (let x = 0; x < mtx[y].length; ++x) {
-            if (mtx[y][x] !== 0 &&
-                (game[y + ofs.y] &&
-                    game[y + ofs.y][x + ofs.x]) !== 0) {
+function collide(game, player) {
+    const m = player.matrix;
+    const o = player.position;
+    for (let y = 0; y < m.length; ++y) {
+        for (let x = 0; x < m[y].length; ++x) {
+            if (m[y][x] !== 0 &&
+                (game[y + o.y] &&
+                    game[y + o.y][x + o.x]) !== 0) {
                 return true;
             }
         }
@@ -37,6 +37,7 @@ function createMatrix(w, h) {
 function draw() {
     context.fillStyle = "#000";
     context.fillRect(0, 0, W, H);
+    drawMatrix(game, {x: 0, y: 0});
     drawMatrix(player.matrix, player.position);
 }
 
@@ -51,11 +52,11 @@ function drawMatrix(matrix, offset) {
     });
 }
 
-function mergeGamePlayer(game, player) {
+function merge(game, player) {
     player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
-                game[y + player.pos.y][x + player.pos.x] = value;
+                game[y + player.position.y][x + player.position.x] = value;
             }
         });
     });
@@ -64,9 +65,11 @@ function mergeGamePlayer(game, player) {
 function playerDrop() {
 
     player.position.y++;
-    if (isCollision(game, player)) {
+    if (collide(game, player)) {
+        console.log("new blocks please");
         player.position.y--;
-        mergeGamePlayer(game, player);
+        console.log(player.position);
+        merge(game, player);
         player.position.y = 0;
     }
     dropCounter = 0;
@@ -84,7 +87,6 @@ function update(time = 0) {
     if (dropCounter > dropInterval) {
         playerDrop();
     }
-    // console.log(deltaTime);
     draw();
     requestAnimationFrame(update);
 }
