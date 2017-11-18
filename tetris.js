@@ -76,6 +76,14 @@ function playerDrop() {
 
 }
 
+function playerMove(direction) {
+    player.position.x += direction;
+    if (collide(game, player)) {
+        player.position.x -= direction;
+    }
+    
+}
+
 let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
@@ -101,9 +109,11 @@ const player = {
 
 document.addEventListener('keydown', event => {
     if (event.keyCode === 37) {
-        player.position.x--;
+        playerMove(-1);
+        // player.position.x--;
     } else if (event.keyCode === 39) {
-        player.position.x++;
+        playerMove(1);
+        // player.position.x++;
     } else if (event.keyCode === 40) {
         playerDrop();
     }
