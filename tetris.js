@@ -133,6 +133,8 @@ function playerMove(direction) {
 function playerReset() {
     const blocks = 'ILJOTSZ';
     player.matrix = createBlocks(blocks[blocks.length * Math.random() | 0]);
+    player.position.y = 0;
+    player.position.x = (game[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
 
     
 }
