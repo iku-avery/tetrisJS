@@ -5,11 +5,11 @@ let H = canvas.height;
 
 context.scale(20, 20);
 
-const matrix = [
-    [0, 0, 0],
-    [1, 1, 1],
-    [0, 1, 0]
-];
+// const matrix = [
+//     [0, 0, 0],
+//     [1, 1, 1],
+//     [0, 1, 0]
+// ];
 
 function collide(game, player) {
     const m = player.matrix;
@@ -32,6 +32,53 @@ function createMatrix(w, h) {
         matrix.push(new Array(w).fill(0));
     }
     return matrix;
+}
+
+function createBlocks(type) {
+    if (type === "T") {
+        return [
+            [0, 0, 0],
+            [1, 1, 1],
+            [0, 1, 0]
+        ];
+    } else if (type === 'O') {
+        return [
+            [1, 1],
+            [1, 1],
+        ];
+    } else if (type === 'L') {
+        return [
+            [0, 1, 0],
+            [0, 1, 0],
+            [0, 1, 1]
+        ];
+    } else if (type === 'J') {
+        return [
+            [0, 1, 0],
+            [0, 1, 0],
+            [1, 1, 0]
+        ];
+    } else if (type === 'I') {
+        return [
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0],
+            [0, 1, 0, 0]
+        ];
+    } else if (type === 'S') {
+        return [
+            [0, 1, 1],
+            [1, 1, 0],
+            [0, 0, 0]
+        ];
+    } else if (type === 'Z') {
+        return [
+            [1, 1, 0],
+            [0, 1, 1],
+            [0, 0, 0]
+        ];
+    }
+    
 }
 
 function draw() {
@@ -88,7 +135,7 @@ function playerRotate(direction) {
     let offset = 1;
     rotate(player.matrix, direction);
     while (collide(game, player)) {
-        // console.log("do this");
+        // console.log("dupa");
         player.position.x += offset;
         offset = -(offset + (offset > 0 ? 1 : -1));
         if (offset > player.matrix[0].length) {
@@ -142,7 +189,7 @@ console.log(game); console.table(game);
 
 const player = {
     position: {x:5, y:5},
-    matrix: matrix
+    matrix: createBlocks('T',)
 };
 
 document.addEventListener('keydown', event => {
