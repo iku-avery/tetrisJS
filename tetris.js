@@ -88,6 +88,8 @@ function playerRotate(direction) {
     rotate(player.matrix, direction);
     while (collide(game, matrix)) {
         console.log("do this");
+        player.position.x += offset;
+        offset = -(offset + (offset > 0 ? 1 : -1));
 
     }
 
