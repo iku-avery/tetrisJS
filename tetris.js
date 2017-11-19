@@ -130,6 +130,13 @@ function playerMove(direction) {
     }
 }
 
+function playerReset() {
+    const blocks = 'ILJOTSZ';
+    player.matrix = createBlocks(blocks[blocks.length * Math.random() | 0]);
+
+    
+}
+
 function playerRotate(direction) {
     const position = player.position.x;
     let offset = 1;
