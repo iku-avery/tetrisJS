@@ -117,7 +117,8 @@ function playerDrop() {
         player.position.y--;
         console.log(player.position);
         merge(game, player);
-        player.position.y = 0;
+        playerReset();
+        // player.position.y = 0;
     }
     dropCounter = 0;
 
@@ -135,6 +136,9 @@ function playerReset() {
     player.matrix = createBlocks(blocks[blocks.length * Math.random() | 0]);
     player.position.y = 0;
     player.position.x = (game[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
+    if (collide(game, player)) {
+        game.forEach(row => row.fill(0));
+    }
 
     
 }
