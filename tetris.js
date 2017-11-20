@@ -214,7 +214,7 @@ function update(time = 0) {
 }
 
 function updateScores() {
-
+    document.getElementById('score');
 
 }
 
