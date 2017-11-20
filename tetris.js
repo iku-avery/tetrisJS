@@ -12,6 +12,7 @@ context.scale(20, 20);
 // ];
 
 function sweepBoard() {
+    let rowCounter = 1;
     outer: for(let y = game.length - 1; y > 0; --y) {
         for(let x = 0; x < game[y].length; ++x) {
             if(game[y][x] === 0) {
@@ -22,6 +23,9 @@ function sweepBoard() {
         const row = game.splice(y, 1)[0].fill(0);
         game.unshift(row);
         ++y;
+
+        player.score += rowCounter * 10;
+        rowCounter *= 2;
     }
     
 }
@@ -134,6 +138,7 @@ function playerDrop() {
         merge(game, player);
         playerReset();
         sweepBoard();
+        updateScores();
         // player.position.y = 0;
     }
     dropCounter = 0;
@@ -154,6 +159,8 @@ function playerReset() {
     player.position.x = (game[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(game, player)) {
         game.forEach(row => row.fill(0));
+        player.score = 0;
+        updateScores();
     }
 
     
