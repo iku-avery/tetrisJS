@@ -5,12 +5,6 @@ let H = canvas.height;
 
 context.scale(20, 20);
 
-// const matrix = [
-//     [0, 0, 0],
-//     [1, 1, 1],
-//     [0, 1, 0]
-// ];
-
 function sweepBoard() {
     let rowCounter = 1;
     outer: for(let y = game.length - 1; y > 0; --y) {
@@ -249,10 +243,8 @@ const player = {
 document.addEventListener('keydown', event => {
     if (event.keyCode === 37) {
         playerMove(-1);
-        // player.position.x--;
     } else if (event.keyCode === 39) {
         playerMove(1);
-        // player.position.x++;
     } else if (event.keyCode === 40) {
         playerDrop();
     } else if (event.keyCode === 81) {
