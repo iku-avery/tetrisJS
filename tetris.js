@@ -11,6 +11,21 @@ context.scale(20, 20);
 //     [0, 1, 0]
 // ];
 
+function sweepBoard() {
+    outer: for(let y = game.length - 1; y > 0; --y) {
+        for(let x = 0; x < game[y].length; ++x) {
+            if(game[y][x] === 0) {
+                continue outer;
+            }
+        }
+
+        const row = game.splice(y, 1)[0].fill(0);
+        game.unshift(row);
+        ++y;
+    }
+    
+}
+
 function collide(game, player) {
     const m = player.matrix;
     const o = player.position;
@@ -92,7 +107,7 @@ function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
-                context.fillStyle = "red";
+                context.fillStyle = colors[value];
                 context.fillRect(x + offset.x, y + offset.y, 1, 1);
             }
         });
@@ -118,6 +133,7 @@ function playerDrop() {
         console.log(player.position);
         merge(game, player);
         playerReset();
+        sweepBoard();
         // player.position.y = 0;
     }
     dropCounter = 0;
@@ -196,6 +212,22 @@ function update(time = 0) {
     draw();
     requestAnimationFrame(update);
 }
+
+function updateScores() {
+
+
+}
+
+const colors = [
+    null,
+    '#D81B60',
+    '#00897B',
+    '#00BCD4',
+    '#558B2F',
+    '#FFC107',
+    '#E65100',
+    '#E53935'
+];
 
 const game = createMatrix(12, 20);
 console.log(game); console.table(game);
