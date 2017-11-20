@@ -213,8 +213,9 @@ function update(time = 0) {
     requestAnimationFrame(update);
 }
 
+
 function updateScores() {
-    document.getElementById('score');
+    document.getElementById('score').innerText = player.score;
 
 }
 
@@ -233,8 +234,9 @@ const game = createMatrix(12, 20);
 console.log(game); console.table(game);
 
 const player = {
-    position: {x:5, y:5},
-    matrix: createBlocks('T',)
+    position: {x:0, y:0},
+    matrix: null,
+    score: 0,
 };
 
 document.addEventListener('keydown', event => {
@@ -254,5 +256,5 @@ document.addEventListener('keydown', event => {
 });
 
 
-
+playerReset();
 update();
