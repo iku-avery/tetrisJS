@@ -133,7 +133,6 @@ function playerDrop() {
         playerReset();
         sweepBoard();
         updateScores();
-        // player.position.y = 0;
     }
     dropCounter = 0;
 
@@ -165,7 +164,6 @@ function playerRotate(direction) {
     let offset = 1;
     rotate(player.matrix, direction);
     while (collide(game, player)) {
-        // console.log("dupa");
         player.position.x += offset;
         offset = -(offset + (offset > 0 ? 1 : -1));
         if (offset > player.matrix[0].length) {
@@ -232,13 +230,8 @@ const colors = [
 ];
 
 const game = createMatrix(12, 20);
-console.log(game); console.table(game);
 
-const player = {
-    position: {x:0, y:0},
-    matrix: null,
-    score: 0,
-};
+const player = new Player;
 
 document.addEventListener('keydown', event => {
     if (event.keyCode === 37) {
