@@ -251,3 +251,4 @@ document.addEventListener('keydown', event => {
 playerReset();
 updateScores();
 update();
+//check something
